@@ -107,7 +107,7 @@ var HomePage = (function () {
 }());
 HomePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["n" /* Component */])({
-        selector: 'page-home',template:/*ion-inline-start:"S:\Documents\SDP\smartmory-ble\src\pages\home\home.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      Smartmory\n    </ion-title>\n    <ion-buttons end>\n      <button ion-button (click)="scan()">\n        Scan\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n   <ion-list>\n    <button ion-item *ngFor="let device of devices" (click)="deviceSelected(device)">\n      <h2>{{ device.name || \'Unnamed\' }}</h2>\n      <p>{{ device.id }}</p>\n      <p>RSSI: {{device.rssi}}</p>\n    </button>\n   </ion-list>\n</ion-content>\n\n<ion-footer>\n  <ion-toolbar>\n    <p>{{ statusMessage }}</p>\n  </ion-toolbar>\n</ion-footer>\n'/*ion-inline-end:"S:\Documents\SDP\smartmory-ble\src\pages\home\home.html"*/
+        selector: 'page-home',template:/*ion-inline-start:"/Users/erostin/Desktop/test_smartble/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      Smartmory\n    </ion-title>\n    <ion-buttons end>\n      <button ion-button (click)="scan()">\n        Scan\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n   <ion-list>\n    <button ion-item *ngFor="let device of devices" (click)="deviceSelected(device)">\n      <h2>{{ device.name || \'Unnamed\' }}</h2>\n      <p>{{ device.id }}</p>\n      <p>RSSI: {{device.rssi}}</p>\n    </button>\n   </ion-list>\n</ion-content>\n\n<ion-footer>\n  <ion-toolbar>\n    <p>{{ statusMessage }}</p>\n  </ion-toolbar>\n</ion-footer>\n'/*ion-inline-end:"/Users/erostin/Desktop/test_smartble/src/pages/home/home.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* NavController */],
         __WEBPACK_IMPORTED_MODULE_0__ionic_native_ble__["a" /* BLE */],
@@ -236,28 +236,35 @@ var DetailPage = (function () {
             _this.showLongToast(data[1].toString());
         });
     };
-    DetailPage.prototype.setLock = function () {
-        console.log('setLock');
-        console.log('This is the pin: ' + this.pin);
-        var data = new Uint8Array([this.pin]);
+    DetailPage.prototype.writePin = function (pinNum) {
+        var data = new Uint8Array([pinNum]);
         console.log('This is the data: ' + data);
         console.log('This is the data buffer: ' + data.buffer);
         this.ble.write(this.peripheral.id, UNLOCK_SERVICE, LOCK, data.buffer).then(function () { return console.log('Updated lock'); }, function () { return console.log('Error updating lock'); });
-        if (this.pin == 9) {
+        console.log('The write is done!!!');
+    };
+    DetailPage.prototype.setLock = function (pin) {
+        console.log('setLock');
+        console.log('This is the pin: ' + pin);
+        if (pin == 9) {
+            pin = 2;
+            this.writePin(pin);
             this.returnLaptop();
         }
-        console.log('The write is done!!!');
+        else {
+            this.writePin(pin);
+        }
     };
     DetailPage.prototype.actLock = function (i) {
         this.pin = i;
         console.log("Pin rn: " + this.pin);
-        this.setLock();
+        this.setLock(this.pin);
     };
     return DetailPage;
 }());
 DetailPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-detail',template:/*ion-inline-start:"S:\Documents\SDP\smartmory-ble\src\pages\detail\detail.html"*/'\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>{{ peripheral.name || \'Device\' }}</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content class="padding">\n\n<ion-content padding>\n  To get started, select one of the available laptops.\n  <br>\n  <br>\n  To return a laptop, tap on an "Empty Compartment".\n  <ion-list no-lines>\n      <ion-item *ngFor="let laptop of compartments; let i = index">\n      <button ion-button default item-center (click)="ShelfUnlock(\'middle\'); actLock(i+2);">{{laptop}}</button>\n      </ion-item>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"S:\Documents\SDP\smartmory-ble\src\pages\detail\detail.html"*/,
+        selector: 'page-detail',template:/*ion-inline-start:"/Users/erostin/Desktop/test_smartble/src/pages/detail/detail.html"*/'\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>{{ peripheral.name || \'Device\' }}</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content class="padding">\n\n<ion-content padding>\n  To get started, select one of the available laptops.\n  <br>\n  <br>\n  To return a laptop, tap on an "Empty Compartment".\n  <ion-list no-lines>\n      <ion-item *ngFor="let laptop of compartments; let i = index">\n      <button ion-button default item-center (click)="ShelfUnlock(\'middle\'); actLock(i+2);">{{laptop}}</button>\n      </ion-item>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/Users/erostin/Desktop/test_smartble/src/pages/detail/detail.html"*/,
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */],
         __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */],
@@ -385,7 +392,7 @@ var MyApp = (function () {
     return MyApp;
 }());
 MyApp = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({template:/*ion-inline-start:"S:\Documents\SDP\smartmory-ble\src\app\app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"S:\Documents\SDP\smartmory-ble\src\app\app.html"*/
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({template:/*ion-inline-start:"/Users/erostin/Desktop/test_smartble/src/app/app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"/Users/erostin/Desktop/test_smartble/src/app/app.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
 ], MyApp);

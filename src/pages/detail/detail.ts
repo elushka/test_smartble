@@ -118,21 +118,12 @@ export class DetailPage {
             console.log('This is the data zero: '+data[1]);
             console.log('This is the data buffer: '+data.buffer);
             this.showLongToast(data[1].toString());
-
-
         }
     )
-
-
   }
-  setLock(pin){
-    console.log('setLock');
-    console.log('This is the pin: '+pin);
-    if(pin == 9){
-      pin = 2;
-      this.returnLaptop();
-    }
-    let data = new Uint8Array([pin]);
+
+  writePin(pinNum) {
+    let data = new Uint8Array([pinNum]);
     console.log('This is the data: '+data);
     console.log('This is the data buffer: '+data.buffer);
     this.ble.write(this.peripheral.id, UNLOCK_SERVICE, LOCK, data.buffer).then(
@@ -141,6 +132,19 @@ export class DetailPage {
     );
     
     console.log('The write is done!!!');
+  }
+
+  setLock(pin){
+    console.log('setLock');
+    console.log('This is the pin: '+pin);
+    if(pin == 9){
+      pin = 2;
+      this.writePin(pin);
+      this.returnLaptop();
+    }
+    else {
+      this.writePin(pin);
+    }  
   }
 
   actLock(i){

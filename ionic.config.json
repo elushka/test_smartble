@@ -1,0 +1,8 @@
+{
+  "name": "Smartmory",
+  "app_id": "smartlocker",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}

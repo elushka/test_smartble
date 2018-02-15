@@ -1,0 +1,33 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-ble-central": {
+      "PACKAGE_NAME": "com.company.smartlocker"
+    },
+    "cordova-plugin-console": {
+      "PACKAGE_NAME": "com.company.smartlocker"
+    },
+    "cordova-plugin-device": {
+      "PACKAGE_NAME": "com.company.smartlocker"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "com.company.smartlocker"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "com.company.smartlocker"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.company.smartlocker"
+    },
+    "ionic-plugin-keyboard": {
+      "PACKAGE_NAME": "com.company.smartlocker"
+    }
+  },
+  "dependent_plugins": {}
+}

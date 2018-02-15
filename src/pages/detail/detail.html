@@ -1,0 +1,22 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ peripheral.name || 'Device' }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content class="padding">
+
+<ion-content padding>
+  To get started, select one of the available laptops.
+  <br>
+  <br>
+  To return a laptop, tap on an "Empty Compartment".
+  <ion-list no-lines>
+      <ion-item *ngFor="let laptop of compartments; let i = index">
+      <button ion-button default item-center (click)="ShelfUnlock('middle'); actLock(i+2);">{{laptop}}</button>
+      </ion-item>
+  </ion-list>
+</ion-content>

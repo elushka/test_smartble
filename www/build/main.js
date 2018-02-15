@@ -143,7 +143,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 // OG Service UUIDs FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFF0
 var UNLOCK_SERVICE = 'FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFF0';
 var LOCK = 'FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFF4';
-var NFC_READ = 'FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFF3';
+var NFC_READ = 'FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFF2';
 var DetailPage = (function () {
     function DetailPage(navCtrl, navParams, ble, toastCtrl, ngZone) {
         var _this = this;
